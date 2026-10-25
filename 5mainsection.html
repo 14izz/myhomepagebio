@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Personal Home Page</title>
+
+<style>
+  :root{
+    --pitch: #1B4332;
+    --pitch-dark: #11291F;
+    --chalk: #F7F5F0;
+    --gold: #D4A24C;
+    --ink: #0E1A14;
+    --line: rgba(247,245,240,0.18);
+    --accent: var(--gold);
+    --accent-soft: rgba(212,162,76,0.15);
+	}
+  body.away{
+    --pitch: #16213E;
+    --pitch-dark: #0D1526;
+    --accent: #C1272D;
+    --accent-soft: rgba(193,39,45,0.18);
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin:0;
+    font-family:'Inter', sans-serif;
+    background: var(--pitch-dark);
+    color: var(--chalk);
+    transition: background 0.5s ease;
+    min-height:100vh;
+	}
+
+  /* faint pitch line */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      repeating-linear-gradient(0deg, var(--line) 0 1px, transparent 1px 90px),
+      linear-gradient(180deg, var(--pitch) 0%, var(--pitch-dark) 100%);
+    z-index:-1;
+    transition: background 0.5s ease;
+	}
+
+  .wrap{
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 48px 24px 72px;
+	}
+
+  .clock{
+    font-family:'Oswald', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    border: 1px solid var(--line);
+    display:inline-block;
+    padding: 6px 14px;
+    border-radius: 3px;
+    margin-bottom: 28px;
+	}
+
+  h1{
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    line-height:1.1;
+    margin: 0 0 4px;
+    letter-spacing: 0.01em;
+	}
+
+  .sub{
+    color: var(--chalk);
+    opacity:0.6;
+    margin: 0 0 32px;
+    font-size:0.95rem;
+	}
+
+  .rule{
+    border:none;
+    border-top:1px solid var(--line);
+    margin: 32px 0;
+	}
+
+  .profile{
+    display:flex;
+    gap:24px;
+    align-items:flex-start;
+    flex-wrap:wrap;
+	}
+
+  .photo-frame{
+    width:160px;
+    height:160px;
+    flex-shrink:0;
+    border-radius:4px;
+    overflow:hidden;
+    border: 2px solid var(--accent);
+	}
+  .photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+	}
+
+  .facts{
+    flex:1;
+    min-width:220px;
+	}
+
+  .fact-row{
+    display:flex;
+    justify-content:space-between;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+    font-size:0.98rem;
+	}
+	
+  .fact-row span:first-child{
+    opacity:0.55;
+	}
+	
+  .fact-row span:last-child{
+    font-weight:600;
+	}
+
+  .scoreboard{
+    margin: 36px 0;
+    text-align:center;
+    background: var(--accent-soft);
+    border: 1px solid var(--line);
+    border-radius:4px;
+    padding: 20px 0 16px;
+    transition: background 0.5s ease;
+	}
+	
+  .scoreboard .label{
+    font-size:0.8rem;
+    letter-spacing:0.1em;
+    opacity:0.6;
+    margin-bottom:4px;
+	}
+	
+  .scoreboard .num{
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    font-size: 4.2rem;
+    line-height:1;
+    color: var(--accent);
+    transition: color 0.5s ease;
+	}
+
+  h2{
+    font-family:'Oswald', sans-serif;
+    font-weight:500;
+    font-size:1.15rem;
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset:6px;
+    margin-bottom:16px;
+	}
+
+  blockquote{
+    margin:0;
+    padding: 18px 20px;
+    border-left: 3px solid var(--accent);
+    background: rgba(247,245,240,0.04);
+    font-style: italic;
+    min-height: 2.6em;
+	}
+  blockquote .cursor{
+    display:inline-block;
+    width:2px;
+    background:var(--accent);
+    margin-left:2px;
+    animation: blink 0.9s step-end infinite;
+	}
+	@keyframes blink{ 50%{ opacity:0; } }
+
+  .toggle-row{
+    margin-top: 40px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    flex-wrap:wrap;
+	}
+
+  button{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:0.88rem;
+    background: transparent;
+    color: var(--chalk);
+    border: 1px solid var(--accent);
+    padding: 10px 16px;
+    border-radius: 3px;
+    cursor:pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+	}
+	
+  button:hover{
+    background: var(--accent);
+    color: var(--ink);
+	}
+  button:focus-visible{
+    outline: 2px solid var(--chalk);
+    outline-offset: 2px;
+	}
+
+  .kit-note{
+    font-size:0.82rem;
+    opacity:0.55;
+	}
+
+  @media (prefers-reduced-motion: reduce){
+    .cursor{ animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="clock" id="matchClock">⏱ 00:00 on the page clock</div>
+
+  <h1>Afidz Izzudin Bin Abdul Mutalib</h1>
+  <p class="sub">Kuching, Sarawak &middot; Politeknik Kuching Sarawak</p>
+
+  <div class="profile">
+    <div class="photo-frame">
+      <img src="myphoto.jpg" alt="A photo of me">
+    </div>
+    <div class="facts">
+      <div class="fact-row"><span>Hobby</span><span>Sports</span></div>
+      <div class="fact-row"><span>Last School</span><span>Politeknik Kuching Sarawak</span></div>
+      <div class="fact-row"><span>State</span><span>Kuching, Sarawak</span></div>
+      <div class="fact-row"><span>Status</span><span id="statusText">—</span></div>
+    </div>
+  </div>
+
+  <div class="scoreboard">
+    <div class="label">AGE</div>
+    <div class="num" id="ageNum">0</div>
+  </div>
+
+  <hr class="rule">
+
+  <h2>Quote for today</h2>
+  <blockquote id="quoteBox"></blockquote>
+
+  <div class="toggle-row">
+    <button id="kitToggle">Switch to Away Kit</button>
+  </div>
+  <p class="kit-note" id="factNote"></p>
+
+</div>
+
+<script>
+  // --- live "on the page" clock, stadium style ---
+  const clockEl = document.getElementById('matchClock');
+  const startTime = Date.now();
+  setInterval(() => {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const mm = String(Math.floor(elapsed / 60)).padStart(2, '0');
+    const ss = String(elapsed % 60).padStart(2, '0');
+    clockEl.textContent = `⏱ ${mm}:${ss} on the page clock`;
+  }, 1000);
+
+  // --- greeting based on time of day ---
+  const hour = new Date().getHours();
+  const statusText = document.getElementById('statusText');
+  statusText.textContent =
+    hour < 12 ? 'Up early, like training' :
+    hour < 18 ? 'Mid-match hours' :
+    'Winding down';
+
+  // --- scoreboard count-up for age ---
+  const ageTarget = 24;
+  const ageEl = document.getElementById('ageNum');
+  let current = 0;
+  const countUp = setInterval(() => {
+    current++;
+    ageEl.textContent = current;
+    if (current >= ageTarget) clearInterval(countUp);
+  }, 60);
+
+  // --- typewriter quote ---
+  const quote = '"If you do the code, type it not copy it." - Sir Syahrul';
+  const quoteBox = document.getElementById('quoteBox');
+  let i = 0;
+  function typeQuote() {
+    if (i <= quote.length) {
+      quoteBox.innerHTML = quote.slice(0, i) + '<span class="cursor">&nbsp;</span>';
+      i++;
+      setTimeout(typeQuote, 35);
+    } else {
+      quoteBox.innerHTML = quote + '<span class="cursor">&nbsp;</span>';
+    }
+  }
+  typeQuote();
+
+  // --- home / away kit toggle ---
+  const kitBtn = document.getElementById('kitToggle');
+  kitBtn.addEventListener('click', () => {
+    document.body.classList.toggle('away');
+    const isAway = document.body.classList.contains('away');
+    kitBtn.textContent = isAway ? 'Switch to Home Kit' : 'Switch to Away Kit';
+  });
+
+
+  const factBtn = document.getElementById('factBtn');
+  const factNote = document.getElementById('factNote');
+  factBtn.addEventListener('click', () => {
+    const pick = facts[Math.floor(Math.random() * facts.length)];
+    factNote.textContent = pick;
+  });
+</script>
+</body>
+</html>
