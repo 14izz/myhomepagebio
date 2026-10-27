@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -40,9 +39,7 @@
     content:"";
     position:fixed;
     inset:0;
-    background:
-      repeating-linear-gradient(0deg, var(--line) 0 1px, transparent 1px 90px),
-      linear-gradient(180deg, var(--pitch) 0%, var(--pitch-dark) 100%);
+    background: linear-gradient(180deg, var(--pitch) 0%, var(--pitch-dark) 100%);
     z-index:-1;
     transition: background 0.5s ease;
 	}
@@ -218,6 +215,51 @@
     opacity:0.55;
 	}
 
+  /* ---- Contact section ---- */
+  .contact-box{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    max-width:420px;
+  }
+  .contact-box label{
+    font-size:0.85rem;
+    opacity:0.7;
+    margin-bottom:4px;
+    display:block;
+  }
+  .contact-box input,
+  .contact-box textarea{
+    width:100%;
+    padding:10px 12px;
+    border-radius:3px;
+    border:1px solid var(--line);
+    background: rgba(247,245,240,0.04);
+    color: var(--chalk);
+    font-family:'Inter', sans-serif;
+    font-size:0.95rem;
+  }
+  .contact-box input:focus-visible,
+  .contact-box textarea:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+  .field-error{
+    color:#E07A5F;
+    font-size:0.8rem;
+    min-height:1.1em;
+  }
+  #contactStatus{
+    font-size:0.9rem;
+    font-weight:600;
+    min-height:1.2em;
+  }
+  .contact-alt{
+    margin-top:16px;
+    font-size:0.88rem;
+    opacity:0.65;
+  }
+
   @media (prefers-reduced-motion: reduce){
     .cursor{ animation: none; }
   }
@@ -228,28 +270,40 @@
 
   <div class="clock" id="matchClock">⏱ 00:00 on the page clock</div>
 
+	<!-- Header -->
   <h1>Afidz Izzudin Bin Abdul Mutalib</h1>
-  <p class="sub">Kuching, Sarawak &middot; Politeknik Kuching Sarawak</p>
-
+  <p class="sub">Kuching, Sarawak &middot; University Malaysia Sarawak</p>
+  
+   <!-- About me -->
+  <h2>About Me</h2>
+  <p class="sub" style="opacity:0.85; max-width:560px; margin-bottom:28px;">
+    I gladly take mistakes early rather than at the last minute, because that's when I learn the
+    most and get to explore new things. In today's AI era, I believe we can learn and access
+    information more easily, reducing the cost of gaining knowledge.
+  </p>
+  
+	<!-- Profile -->
   <div class="profile">
     <div class="photo-frame">
       <img src="myphoto.jpg" alt="A photo of me">
     </div>
     <div class="facts">
       <div class="fact-row"><span>Hobby</span><span>Sports</span></div>
-      <div class="fact-row"><span>Last School</span><span>Politeknik Kuching Sarawak</span></div>
+      <div class="fact-row"><span>Current School</span><span>University Malaysia Sarawak</span></div>
       <div class="fact-row"><span>State</span><span>Kuching, Sarawak</span></div>
       <div class="fact-row"><span>Status</span><span id="statusText">—</span></div>
     </div>
   </div>
-
+  
+<!-- Age -->
   <div class="scoreboard">
     <div class="label">AGE</div>
     <div class="num" id="ageNum">0</div>
   </div>
 
   <hr class="rule">
-
+  
+	<!-- quote -->
   <h2>Quote for today</h2>
   <blockquote id="quoteBox"></blockquote>
 
@@ -258,9 +312,20 @@
   </div>
   <p class="kit-note" id="factNote"></p>
 
+  <hr class="rule">
+  
+<!-- Contact -->
+  <h2>Contact</h2>
+  <div class="facts">
+    <div class="fact-row"><span>Name</span><span>Afidz Izzudin Bin Abdul Mutalib</span></div>
+	<div class="fact-row"><span>Phone No.</span><span>0109357519</span></div>
+    <div class="fact-row"><span>Email</span><span><a href="mailto:103101@siswa.unimas.my" style="color:var(--accent);">103101@siswa.unimas.my</a></span></div>
+  </div>
+
 </div>
 
 <script>
+
   // --- live "on the page" clock, stadium style ---
   const clockEl = document.getElementById('matchClock');
   const startTime = Date.now();
